@@ -27,15 +27,16 @@ mongoose.connect(url, function(error, response) {
 
 //Here we declarate all models and controllers that our application will use
 var models = require('./models/user')
-var userController = require('./controller/userController')
-var productController = require('./controller/productController')
+var offerController = require('./controller/offerController')
 
 //Router allow to us to easily match the endpoint with their respective controller
 var api = express.Router()
-api.route('/product/:productId').put(productController.updateProduct)
-api.route('/product/:product_id').get(productController.getProduct)
-api.route('/product/:product_id').post(prorductController.addProduct)
-
+/*api.route('/offer/:id')
+api.route('/offer/:id').post('/create', offer_controller.offer_create)
+*/
+router.get('/:id', offer_controller.offer_details);
+router.post('/create', offer_controller.offer_create);
+router.put('/:id/update', offer_controller.offer_update);
 //After we define our routes, we have to tell to express that we shall use our 'routes', starting over root
 app.use('/', api);
 
